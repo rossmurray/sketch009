@@ -1,4 +1,6 @@
-var fnMain = (function() {
+(function (globals) {
+    "use strict";
+
     function render(deltaMs, state) {
         requestAnimationFrame(function(timestamp){
             render(timestamp, state);
@@ -58,7 +60,7 @@ var fnMain = (function() {
         return result;
     }
 
-    return (function() {
+    var result = (function() {
         const config = getConfig();
         const mainel = document.getElementById("main");
         let app = new PIXI.Application({
@@ -88,4 +90,5 @@ var fnMain = (function() {
             return state;
         }
     })();
-})();
+    globals.fnMain = result;
+})(this);
